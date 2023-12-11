@@ -1,5 +1,9 @@
 terraform {
-  backend "s3" {}
+  backend "s3" {
+    bucket = "terraform-state-bucket-prsj"
+    key    = "global/s3/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 
