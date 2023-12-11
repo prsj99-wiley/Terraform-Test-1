@@ -1,20 +1,25 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-    }
+resource "aws_s3_bucket" "s3Bucket" {
+     bucket = "terraform-state-bucket2-prsj"
+     acl       = "public-read"
+
+     policy  = <<EOF
+{
+     "id" : "MakePublic",
+   "version" : "2012-10-17",
+   "statement" : [
+      {
+         "action" : [
+             "s3:GetObject"
+          ],
+         "effect" : "Allow",
+         "resource" : "arn:aws:s3:::terraform-state-bucket2-prsj/*",
+         "principal" : "*"
+      }
+    ]
   }
+EOF
 
-  required_version = ">= 0.14.9"
-
-  backend "s3" {
-    bucket = "terraform-state-bucket-prsj"
-    key    = "global/s3/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
-provider "aws" {
-  version = ">= 3.0"
-  region  = "us-east-1"
+   website {
+       index_document = "index.html"
+   }
 }
