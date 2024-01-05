@@ -7,18 +7,18 @@ resource "aws_s3_bucket" "s3Bucket" {
   }
 }
 
-resource "aws_glue_job" "est-job1" {
-  name     = "test-job1"
-  role_arn = "arn:aws:iam::239950985641:role/glue-service-role"
-  max_retries = "1"
-  timeout = 2880
+# resource "aws_glue_job" "est-job1" {
+#   name     = "test-job1"
+#   role_arn = "arn:aws:iam::239950985641:role/glue-service-role"
+#   max_retries = "1"
+#   timeout = 2880
 
-  command {
-    script_location = "s3://terraform-state-bucket2-prsj/hello_world.py"
-    python_version = "3"
-  }
-  glue_version = "3.0"
-}
+#   command {
+#     script_location = "s3://terraform-state-bucket2-prsj/hello_world.py"
+#     python_version = "3"
+#   }
+#   glue_version = "3.0"
+# }
 
 # resource "aws_s3_bucket" "s3Bucket" {
 #      bucket = "terraform-state-bucket2-prsj"
