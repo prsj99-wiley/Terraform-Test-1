@@ -17,6 +17,7 @@ resource "aws_glue_job" "est-job1" {
     script_location = "s3://terraform-state-bucket2-prsj/hello_world.py"
     python_version = "3"
   }
+  glue_version = "3.0"
 }
 
 # resource "aws_s3_bucket" "s3Bucket" {
