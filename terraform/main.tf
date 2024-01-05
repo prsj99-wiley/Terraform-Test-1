@@ -7,21 +7,15 @@ resource "aws_s3_bucket" "s3Bucket" {
   }
 }
 
-resource "aws_glue_trigger" "example" {
-  name = "example"
-  type = "CONDITIONAL"
+resource "aws_glue_job" "example" {
+  name     = "test-job1"
+  role_arn = arn:aws:iam::239950985641:role/glue-service-role
 
-  actions {
-    job_name = aws_glue_job.example1.name
-  }
-
-  predicate {
-    conditions {
-      job_name = aws_glue_job.example2.name
-      state    = "SUCCEEDED"
-    }
+  command {
+    script_location = "s3://terraform-state-bucket2-prsj/hello_world.py"
   }
 }
+
 # resource "aws_s3_bucket" "s3Bucket" {
 #      bucket = "terraform-state-bucket2-prsj"
 #      acl       = "public-read"
